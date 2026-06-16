@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مستندات پیاده‌سازی پنل نهان</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Vazirmatn Persian Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Vazirmatn', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            light: '#4f46e5',
+                            dark: '#818cf8',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Vazirmatn', sans-serif;
+        }
+        .monospace-font {
+            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+            direction: ltr;
+            text-align: left;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 dark:bg-[#080c14] dark:text-slate-300 antialiased min-h-screen transition-colors duration-300">
+
+    <!-- Header Section -->
+    <header class="sticky top-0 z-40 w-full border-b border-slate-200 bg-white/80 dark:border-slate-800/80 dark:bg-[#080c14]/80 backdrop-blur-md transition-colors duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <span class="w-2.5 h-2.5 rounded-full bg-indigo-500 animate-pulse"></span>
+                <span class="font-extrabold text-slate-900 dark:text-white tracking-tight text-lg">نهان / مستندات فنی</span>
+                <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-slate-100 dark:bg-slate-900 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-800">v2.5.4</span>
+            </div>
+            
+            <div class="flex items-center gap-3">
+                <!-- Dark/Light Theme Switcher -->
+                <button id="theme-toggle" class="p-2 rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-850 transition" aria-label="تغییر پوسته">
+                    <!-- Sun Icon -->
+                    <svg id="theme-toggle-light-icon" class="hidden w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
+                    </svg>
+                    <!-- Moon Icon -->
+                    <svg id="theme-toggle-dark-icon" class="hidden w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/>
+                    </svg>
+                </button>
+                <a href="https://github.com/itsyebekhe/nahan/" target="_blank" class="text-xs font-semibold text-slate-600 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400">گیت‌هاب پروژه &larr;</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10">
+            
+            <!-- Sticky Sidebar -->
+            <aside class="hidden lg:block lg:col-span-3">
+                <div class="sticky top-24 space-y-6">
+                    <nav class="space-y-1 text-sm font-medium">
+                        <p class="text-[10px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest px-3 mb-2">مقدمه</p>
+                        <a href="#intro" class="flex items-center gap-2 px-3 py-2 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white rounded-lg transition">معرفی و پیش‌نیازها</a>
+                        
+                        <p class="text-[10px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest px-3 pt-4 mb-2">استقرار سیستم</p>
+                        <a href="#setup" class="flex items-center gap-2 px-3 py-2 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white rounded-lg transition">مراحل نصب گام‌به‌گام</a>
+                        <a href="#first-login" class="flex items-center gap-2 px-3 py-2 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white rounded-lg transition">ورود اولیه و امنیت</a>
+                        
+                        <p class="text-[10px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest px-3 pt-4 mb-2">پیکربندی هوشمند</p>
+                        <a href="#endpoints" class="flex items-center gap-2 px-3 py-2 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white rounded-lg transition">تب نقاط اتصال و ساب</a>
+                        <a href="#advanced-settings" class="flex items-center gap-2 px-3 py-2 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white rounded-lg transition">تب پیشرفته و ویژگی‌ها</a>
+                        <a href="#users" class="flex items-center gap-2 px-3 py-2 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white rounded-lg transition">مدیریت کاربران و انقضا</a>
+                        
+                        <p class="text-[10px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest px-3 pt-4 mb-2">ابزارهای توسعه‌دهنده</p>
+                        <a href="#obfuscator-section" class="flex items-center gap-2 px-3 py-2 text-slate-800 dark:text-indigo-400 font-bold hover:bg-slate-100 dark:hover:bg-slate-900/50 rounded-lg transition">دریافت و مبهم‌سازی کدهای ورکر</a>
+                    </nav>
+                </div>
+            </aside>
+
+            <!-- Content Area -->
+            <main class="col-span-1 lg:col-span-9 space-y-16">
+
+                <!-- Section: Intro -->
+                <section id="intro" class="space-y-4">
+                    <h2 class="text-xl sm:text-2xl font-extrabold text-slate-900 dark:text-white">معرفی پروژه نهان</h2>
+                    <p class="text-slate-600 dark:text-slate-400 text-xs sm:text-sm leading-relaxed text-justify">
+                        پروژه <strong>نهان (Nahan)</strong> یک راهکار توزیع ترافیک و پروکسی معکوس بدون سرور (Serverless) در بستر کلودفلر است. در این ساختار بدون نیاز به تهیه سرور مجازی شخصی (VPS)، با استفاده از معماری لبه کلودفلر و پایگاه داده با کارایی بالای SQLite D1، ترافیک شبکه‌ی کاربران به صورتی همگام و ایمن در بستر اینترنت هدایت می‌شود.
+                    </p>
+                </section>
+
+                <!-- Section 1: Step by Step Setup -->
+                <section id="setup" class="space-y-6">
+                    <div class="border-r-2 border-indigo-500 pr-3">
+                        <h2 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white">مراحل نصب گام‌به‌گام</h2>
+                    </div>
+                    <div class="space-y-6">
+                        <div class="space-y-2">
+                            <h3 class="text-sm font-bold text-slate-900 dark:text-white">۱. ایجاد پایگاه داده کلودفلر D1</h3>
+                            <p class="text-slate-600 dark:text-slate-400 text-xs sm:text-sm leading-relaxed">
+                                در پنل کاربری کلودفلر، از منوی سمت چپ به بخش <strong class="text-slate-800 dark:text-slate-200">Storage and databases</strong> رفته و گزینه <strong class="text-slate-800 dark:text-slate-200">D1 SQLite database</strong> را برگزینید. روی دکمه‌ی <strong class="text-indigo-600 dark:text-indigo-400">Create Database</strong> کلیک کرده، نامی دلخواه بنویسید و فرآیند ساخت را تکمیل کنید.
+                            </p>
+                        </div>
+
+                        <div class="space-y-2">
+                            <h3 class="text-sm font-bold text-slate-900 dark:text-white">۲. ساخت نرم‌افزار لبه (Worker)</h3>
+                            <p class="text-slate-600 dark:text-slate-400 text-xs sm:text-sm leading-relaxed">
+                                به بخش <strong class="text-slate-800 dark:text-slate-200">Workers and Pages</strong> بروید. گزینه‌ی <strong class="text-indigo-600 dark:text-indigo-400">Create Application</strong> و سپس <strong class="text-indigo-600 dark:text-indigo-400">Start with Hello World</strong> را انتخاب کنید. در این بخش نامی کاملاً عمومی و فاقد کلمات کلیدی پروکسی برای ورکر خود قرار داده و دکمه‌ی دپلو را بزنید.
+                            </p>
+                        </div>
+
+                        <div class="space-y-2">
+                            <h3 class="text-sm font-bold text-slate-900 dark:text-white">۳. اعمال پیوندهای دیتابیس (Bindings)</h3>
+                            <p class="text-slate-600 dark:text-slate-400 text-xs sm:text-sm leading-relaxed mb-3">
+                                به صفحه تنظیمات ورکر بروید. وارد زبانه <strong class="text-slate-800 dark:text-slate-200">Settings</strong> شده، به بخش <strong class="text-slate-800 dark:text-slate-200">Bindings</strong> رفته و روی <strong class="text-indigo-600 dark:text-indigo-400">Add binding</strong> کلیک کنید. گزینه <strong class="text-slate-800 dark:text-slate-200">D1 Database</strong> را انتخاب کرده و مطابق با مقادیر زیر تنظیم نمایید:
+                            </p>
+                            <div class="p-4 bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 text-xs space-y-2 max-w-md">
+                                <p class="text-slate-500 dark:text-slate-400">نام متغیر (دقیقاً با حروف بزرگ):</p>
+                                <span class="monospace-font text-indigo-600 dark:text-indigo-400 font-bold block bg-slate-50 dark:bg-slate-950 px-3 py-1.5 rounded border border-slate-200 dark:border-slate-850 w-fit">IOT_DB</span>
+                                <p class="text-slate-500 dark:text-slate-400 pt-2">انتخاب دیتابیس:</p>
+                                <p class="text-slate-700 dark:text-slate-300">دیتابیس ساخته شده در گام اول را انتخاب کرده و روی دکمه ذخیره کلیک کنید.</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Section 2: First Login -->
+                <section id="first-login" class="space-y-4">
+                    <div class="border-r-2 border-indigo-500 pr-3">
+                        <h2 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white">ورود اولیه به سیستم و امنیت</h2>
+                    </div>
+                    <div class="text-slate-600 dark:text-slate-400 text-xs sm:text-sm space-y-3 leading-relaxed text-justify">
+                        <p>
+                            پس از جایگذاری کدهای اصلی در ادیتور آنلاین و دپلو کردن، برای ورود به پنل باید عبارت زیر را به انتهای آدرس دامنه‌ی ورکر خود اضافه کنید:
+                        </p>
+                        <div class="p-3 bg-white dark:bg-slate-900 text-indigo-600 dark:text-indigo-400 rounded-xl text-xs sm:text-sm monospace-font border border-slate-200 dark:border-slate-800 w-fit">
+                            /sync/dash
+                        </div>
+                        <p>
+                            کلمه عبور اولیه برای ورود به پنل، عبارت <code class="monospace-font text-pink-600 font-bold bg-white dark:bg-slate-900 px-1 rounded border border-slate-200 dark:border-slate-800">admin</code> با حروف کوچک است که باید بلافاصله پس از اولین ورود موفقیت‌آمیز، جهت امنیت از تنظیمات پنل تغییر داده شود.
+                        </p>
+                    </div>
+                </section>
+
+                <!-- Section 3: Endpoints -->
+                <section id="endpoints" class="space-y-4">
+                    <div class="border-r-2 border-indigo-500 pr-3">
+                        <h2 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white">تب نقاط اتصال و اشتراک هوشمند</h2>
+                    </div>
+                    <div class="text-slate-600 dark:text-slate-400 text-xs sm:text-sm space-y-4 leading-relaxed text-justify">
+                        <p>
+                            سربرگ نقاط اتصال حاوی اطلاعات اتصالات و آدرس‌های ساب‌اسکریپشن هر مشترک است. در نسخه‌های جدیدتر، قالب‌های مجزای قدیمی آلفا، بتا و گاما حذف شده و همگی در **یک لینک اشتراک همگانی واحد (Universal Sync URL)** ادغام شده‌اند.
+                        </p>
+                        <div class="p-4 bg-indigo-500/5 border border-indigo-500/10 rounded-xl space-y-2">
+                            <strong class="text-slate-900 dark:text-indigo-300 block text-xs">🌍 قابلیت تشخیص هوشمند کلاینت:</strong>
+                            <p class="text-xs text-slate-500 dark:text-slate-400">
+                                این لینک ساب هوشمند، کلاینت متصل شده (نظیر Clash، Sing-Box، Shadowrocket و غیره) را از روی امضای مرورگر تشخیص داده و کدهای متناسب با هسته آن نرم‌افزار را صادر می‌کند.
+                            </p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Section 4: Advanced Settings -->
+                <section id="advanced-settings" class="space-y-4">
+                    <div class="border-r-2 border-indigo-500 pr-3">
+                        <h2 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white">تنظیمات پیشرفته و قابلیت‌های کلاستر</h2>
+                    </div>
+                    <div class="text-slate-600 dark:text-slate-400 text-xs sm:text-sm space-y-4 leading-relaxed text-justify">
+                        <p>
+                            در تب تنظیمات پیشرفته، متغیرهای متعددی جهت شخصی‌سازی رفتارهای لایه عبور شبکه طراحی شده است:
+                        </p>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
+                            <div class="p-4 bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 space-y-1">
+                                <strong class="text-slate-900 dark:text-slate-200">نودهای موازی (Slave Nodes):</strong>
+                                <p class="text-slate-500">امکان تعریف دامنه‌ی سایر ورکرهای کمکی جهت همگام‌سازی و همسان‌سازی خودکار تنظیمات از نود مادر.</p>
+                            </div>
+                            <div class="p-4 bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 space-y-1">
+                                <strong class="text-slate-900 dark:text-slate-200">استراتژی نام‌گذاری کانفیگ‌ها:</strong>
+                                <p class="text-slate-500">تغییر شیوه‌ی درج پورت، شناسه کاربر، نام دامنه یا پیشوندهای سفارشی در کلاینت نهایی.</p>
+                            </div>
+                            <div class="p-4 bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 space-y-1">
+                                <strong class="text-slate-900 dark:text-slate-200">بهینه‌سازهای TCP Fast Open و ECH:</strong>
+                                <p class="text-slate-500">افزایش سرعت هندشیک اولیه و پنهان‌سازی اطلاعات SNI ارسالی به مقصد کلودفلر.</p>
+                            </div>
+                            <div class="p-4 bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-850 space-y-1">
+                                <strong class="text-slate-900 dark:text-slate-200">یکپارچه‌سازی ربات تلگرام:</strong>
+                                <p class="text-slate-500">قابلیت اتصال ربات اختصاصی جهت کنترل مصرف، جستجوی کاربران و مانیتورینگ پنل.</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Section 5: User Management -->
+                <section id="users" class="space-y-4">
+                    <div class="border-r-2 border-indigo-500 pr-3">
+                        <h2 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white">مدیریت کاربران و قطع خودکار</h2>
+                    </div>
+                    <div class="text-slate-600 dark:text-slate-400 text-xs sm:text-sm space-y-3 leading-relaxed text-justify">
+                        <p>
+                            یکی از کاربردی‌ترین قابلیت‌های ارائه‌شده در نسخه ۲.۵.۴، سیستم **توقف اتوماتیک حساب‌های مصرفی و منقضی‌شده (Auto-Disable)** است. 
+                        </p>
+                        <p>
+                            زمانی که ترافیک کلی مصرف‌شده یک کاربر از سقف مجاز فراتر رود یا انقضای زمانی وی به اتمام برسد، پایگاه داده SQLite D1 بلافاصله وضعیت آن کاربر را به صورت خودکار به حالت غیرفعال تغییر می‌دهد تا از بار اضافی ترافیکی ورکر جلوگیری شود.
+                        </p>
+                    </div>
+                </section>
+
+                <!-- Section 6: Interactive Developer Tool (Obfuscator & Fetch Code) -->
+                <section id="obfuscator-section" class="space-y-6 pt-6 border-t border-slate-200 dark:border-slate-800">
+                    <div class="space-y-2">
+                        <h2 class="text-xl font-extrabold text-indigo-600 dark:text-indigo-400">ابزار اختصاصی دریافت و مبهم‌سازی کدهای ورکر</h2>
+                        <p class="text-slate-600 dark:text-slate-400 text-xs sm:text-sm">
+                            در این بخش می‌توانید آخرین نسخه فایل اصلی را از گیت‌هاب دریافت کنید، آن را مشاهده نموده و با متود رمزنگاری پیشرفته یونیکد UTF-8، مبهم‌سازی (Obfuscate) کنید.
+                        </p>
+                    </div>
+
+                    <!-- Interactive Area -->
+                    <div class="space-y-4 bg-white dark:bg-slate-900 p-5 rounded-2xl border border-slate-200 dark:border-slate-800">
+                        <div class="flex flex-wrap gap-2 mb-2">
+                            <button onclick="fetchOriginalCode()" class="px-4 py-2 bg-indigo-600 hover:bg-indigo-500 text-white rounded-lg text-xs font-bold transition flex items-center gap-1.5">
+                                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+                                دریافت زنده کدهای اصلی از گیت‌هاب
+                            </button>
+                            <button onclick="obfuscateSourceCode()" class="px-4 py-2 bg-emerald-600 hover:bg-emerald-500 text-white rounded-lg text-xs font-bold transition flex items-center gap-1.5">
+                                🔒 مبهم‌سازی کدهای ورکر (Obfuscate Code)
+                            </button>
+                        </div>
+
+                        <!-- Code Editors Side by Side -->
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <!-- Input Panel -->
+                            <div class="space-y-1.5">
+                                <div class="flex justify-between items-center text-xs text-slate-500 font-bold px-1">
+                                    <span>سورس کد اصلی ورکر (_worker.js)</span>
+                                    <button onclick="copyToClipboard('original-code-area')" class="text-indigo-500 hover:text-indigo-600">کپی کد</button>
+                                </div>
+                                <textarea id="original-code-area" placeholder="کدهای ورکر را اینجا پیست کنید یا دکمه دریافت زنده را بزنید..." class="w-full h-80 bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-850 p-4 rounded-xl font-mono text-xs text-slate-700 dark:text-slate-300 focus:border-indigo-500 outline-none resize-none"></textarea>
+                            </div>
+
+                            <!-- Output Panel -->
+                            <div class="space-y-1.5">
+                                <div class="flex justify-between items-center text-xs text-slate-500 font-bold px-1">
+                                    <span>کدهای خروجی مبهم‌سازی شده</span>
+                                    <div class="flex gap-2">
+                                        <button onclick="copyToClipboard('obfuscated-code-area')" class="text-emerald-500 hover:text-emerald-600">کپی کد</button>
+                                        <button onclick="downloadObfuscated()" class="text-indigo-500 hover:text-indigo-600">دانلود فایل</button>
+                                    </div>
+                                </div>
+                                <textarea id="obfuscated-code-area" readonly placeholder="کد مبهم‌سازی شده پس از کلیک بر روی دکمه مبهم‌سازی، اینجا نمایش داده می‌شود..." class="w-full h-80 bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-850 p-4 rounded-xl font-mono text-xs text-slate-700 dark:text-slate-300 focus:border-indigo-500 outline-none resize-none"></textarea>
+                            </div>
+                        </div>
+
+                        <!-- Educational Banner on Obfuscation -->
+                        <div class="p-4 bg-slate-50 dark:bg-slate-950 rounded-xl border border-slate-250 dark:border-slate-850 text-xs text-slate-500 dark:text-slate-400 space-y-2 leading-relaxed">
+                            <h4 class="font-bold text-slate-700 dark:text-slate-300">💡 مکانیزم فنی مبهم‌سازی بایت‌شفتینگ UTF-8 چطور کار می‌کند؟</h4>
+                            <p>
+                                کدهای ورودی ابتدا با موتور پردازش بومی مرورگر (`TextEncoder`) به آرایه‌ای از بایت‌های باینری استاندارد UTF-8 (بازه مقادیر عددی ثابت بین ۰ تا ۲۵۵) کامپایل می‌شوند. این متود امکان بروز هرگونه تداخل یا Syntax Error در کاراکترهای چندبایتی فارسی، امضاها یا ایموجی‌های داخل سورس‌کد را به طور کامل از بین می‌برد. پس از اتمام عملگر رمزنگاری XOR، رشته نهایی در کلاینت کلودفلر توسط کلاس پرسرعت `TextDecoder` رمزگشایی شده و به صورت مستقل اجرا می‌گردد.
+                            </p>
+                        </div>
+                    </div>
+                </section>
+
+            </main>
+        </div>
+    </div>
+
+    <!-- Toast Success Notification -->
+    <div id="toast" class="fixed bottom-6 left-1/2 -translate-x-1/2 px-5 py-3 bg-emerald-600 text-white rounded-xl text-xs shadow-xl opacity-0 transition-opacity duration-350 pointer-events-none font-bold">
+        با موفقیت انجام شد!
+    </div>
+
+    <script>
+        // Light/Dark Theme Switcher Logic
+        const themeToggleBtn = document.getElementById('theme-toggle');
+        const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
+        const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
+
+        if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+            themeToggleLightIcon.classList.remove('hidden');
+        } else {
+            document.documentElement.classList.remove('dark');
+            themeToggleDarkIcon.classList.remove('hidden');
+        }
+
+        themeToggleBtn.addEventListener('click', function() {
+            themeToggleDarkIcon.classList.toggle('hidden');
+            themeToggleLightIcon.classList.toggle('hidden');
+
+            if (localStorage.getItem('color-theme')) {
+                if (localStorage.getItem('color-theme') === 'light') {
+                    document.documentElement.classList.add('dark');
+                    localStorage.setItem('color-theme', 'dark');
+                } else {
+                    document.documentElement.classList.remove('dark');
+                    localStorage.setItem('color-theme', 'light');
+                }
+            } else {
+                if (document.documentElement.classList.contains('dark')) {
+                    document.documentElement.classList.remove('dark');
+                    localStorage.setItem('color-theme', 'light');
+                } else {
+                    document.documentElement.classList.add('dark');
+                    localStorage.setItem('color-theme', 'dark');
+                }
+            }
+        });
+
+        // Fetch Live Code from GitHub API
+        async function fetchOriginalCode() {
+            const textarea = document.getElementById('original-code-area');
+            textarea.value = "در حال ارتباط با سرورهای گیت‌هاب و دریافت کدهای اصلی پروژه نهان...";
+            try {
+                const res = await fetch('https://raw.githubusercontent.com/itsyebekhe/nahan/refs/heads/main/_worker.js');
+                if (res.ok) {
+                    const code = await res.text();
+                    textarea.value = code;
+                    showToast("کدهای ورکر با موفقیت دریافت شدند!");
+                } else {
+                    textarea.value = "خطا در برقراری ارتباط با گیت‌هاب. لطفاً چند لحظه دیگر امتحان کرده یا کدها را دستی پیست کنید.";
+                }
+            } catch(e) {
+                textarea.value = "خطای اتصال به شبکه. لطفاً پروکسی یا اینترنت خود را بررسی نمایید.";
+            }
+        }
+
+        // Custom Unique UTF-8 Byte XOR compiler for Cloudflare Modules
+        function obfuscateSourceCode() {
+            const srcText = document.getElementById('original-code-area').value;
+            if(!srcText || srcText.trim().length === 0 || srcText.startsWith("کدهای ورکر را اینجا")) {
+                alert("لطفاً ابتدا کدهای ورکر را وارد نموده یا از گزینه دریافت استفاده کنید.");
+                return;
+            }
+
+            try {
+                // 1. Clean the ES imports out from the evaluated string context
+                let cleanCode = srcText.replace(/import\s*\{\s*connect\s*\}\s*from\s*["']cloudflare:sockets["'];?/g, '');
+                
+                // 2. Change the global ES6 export keyword inside evaluated scope to return evaluation
+                cleanCode = cleanCode.replace(/export\s+default\s+/g, 'return ');
+                
+                // 3. Key generations
+                const randKey = Math.floor(Math.random() * 80) + 64; 
+                
+                // 4. Encode directly to UTF-8 Byte Array first
+                const encoder = new TextEncoder();
+                const bytes = encoder.encode(cleanCode);
+                
+                // 5. Bit-XOR shifting loop to hex blocks (guaranteed to be 2 hex characters)
+                let hexOutput = '';
+                for (let i = 0; i < bytes.length; i++) {
+                    const xorByte = bytes[i] ^ randKey;
+                    hexOutput += xorByte.toString(16).padStart(2, '0');
+                }
+                
+                // 6. Structure the native Workers environment bypass template using TextDecoder
+                const finalLoaderCode = `import { connect } from "cloudflare:sockets";
+
+// Nahan Gateway - Obfuscated Loader Context (v2.5.4 Optimized)
+const _0xNahanPayload = "${hexOutput}";
+const _0xNahanKey = ${randKey};
+
+const _0xNahanBytes = new Uint8Array(_0xNahanPayload.match(/.{1,2}/g).map(x => parseInt(x, 16) ^ _0xNahanKey));
+const _0xNahanCode = new TextDecoder().decode(_0xNahanBytes);
+const _0xNahanRuntime = new Function("connect", _0xNahanCode)(connect);
+
+export default _0xNahanRuntime;`;
+
+                document.getElementById('obfuscated-code-area').value = finalLoaderCode;
+                showToast("کد شما با متود پیشرفته UTF-8 با موفقیت مبهم‌سازی شد!");
+            } catch(err) {
+                alert("خطایی در بهینه‌سازی کدهای ورودی رخ داد: " + err.message);
+            }
+        }
+
+        // Helper: copy function
+        function copyToClipboard(id) {
+            const textarea = document.getElementById(id);
+            if(!textarea.value || textarea.value.trim().length === 0) return;
+            textarea.select();
+            navigator.clipboard.writeText(textarea.value);
+            showToast("کپی با موفقیت انجام شد!");
+        }
+
+        // Helper: download function
+        function downloadObfuscated() {
+            const text = document.getElementById('obfuscated-code-area').value;
+            if(!text || text.trim().length === 0) return;
+            
+            const element = document.createElement('a');
+            element.setAttribute('href', 'data:text/javascript;charset=utf-8,' + encodeURIComponent(text));
+            element.setAttribute('download', '_worker.js');
+            element.style.display = 'none';
+            document.body.appendChild(element);
+            element.click();
+            document.body.removeChild(element);
+        }
+
+        // Helper: toast notifications
+        function showToast(msg) {
+            const toast = document.getElementById('toast');
+            toast.innerText = msg;
+            toast.style.opacity = '1';
+            setTimeout(() => { toast.style.opacity = '0'; }, 2000);
+        }
+    </script>
+</body>
+</html>
